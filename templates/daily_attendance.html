@@ -270,6 +270,7 @@ section {
           <th>#</th>
           <th>NAME</th>
           <th>ID NUMBER</th>
+		  <th>MDA</th>
           <th>CHECK IN TIME</th>
           <th>CHECK OUT TIME</th>
         </tr>
@@ -280,6 +281,7 @@ section {
           <td>{{ forloop.counter }}</td>
           <td>{{ attendance.user.name }}</td>
           <td>{{ attendance.user.id_number }}</td>
+		  <td>{{ attendance.user.mda }}</td>
           <td>{{ attendance.check_in_time }}</td>
           <td>{{ attendance.check_out_time }}</td>
         </tr>

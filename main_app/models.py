@@ -12,6 +12,7 @@ class User(models.Model):
     name = models.CharField(max_length=100)
     id_number = models.CharField(max_length=20, unique=True)
     personal_number = models.CharField(max_length=20, unique=True)
+    mda=models.CharField(max_length=20, null=True)
     phone = models.CharField(max_length=20)
     sex = models.CharField(max_length=1, choices=SEX_CHOICES)
     date_added = models.DateTimeField(auto_now_add=True)
@@ -30,3 +31,4 @@ class Attendance(models.Model):
 
     def __str__(self):
         return f"{self.user.auth_user.username} - {self.date}"
+2

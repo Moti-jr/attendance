@@ -60,7 +60,7 @@ def check_out(request):
 
     return render(request, 'check_out.html')
 
-@login_required
+
 def daily_attendance(request):
     today = timezone.now().date()
     attendance_list = Attendance.objects.filter(date=today)

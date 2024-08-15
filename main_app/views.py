@@ -72,14 +72,14 @@ def daily_attendance(request):
     # data = paginator.get_page(page_number)
     # return render(request, 'daily-attendance.html', {'users': data})
 
-#     # if 'download' in request.GET:
-#     #     html_string = render_to_string('daily_attendance.html', context)
-#     #     html = HTML(string=html_string)
-#     #     result = html.write_pdf()
+    # if 'download' in request.GET:
+    #     html_string = render_to_string('daily_attendance.html', context)
+    #     html = HTML(string=html_string)
+    #     result = html.write_pdf()
 
-#     #     response = HttpResponse(content_type='application/pdf')
-#     #     response['Content-Disposition'] = 'inline; filename=attendance.pdf'
-#     #     response.write(result)
-#     #     return response
+    #     response = HttpResponse(content_type='application/pdf')
+    #     response['Content-Disposition'] = 'inline; filename=attendance.pdf'
+    #     response.write(result)
+    #     return response
 
     return render(request, 'daily_attendance.html', context)

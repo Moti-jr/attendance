@@ -5,10 +5,13 @@ from .models import User, Attendance
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.template.loader import render_to_string
+
+
 # from weasyprint import HTML
 
 def home(request):
     return render(request, 'index.html')
+
 
 @login_required
 def check_in(request):
@@ -17,13 +20,14 @@ def check_in(request):
         try:
             user = User.objects.get(id_number=id_number)
             today = timezone.now().date()
+
             attendance, created = Attendance.objects.get_or_create(user=user, date=today)
 
             if created:
                 attendance.check_in_time = timezone.now()
                 attendance.save()
                 messages.success(request, f"{user.name}, you have successfully checked in.")
-               
+
             else:
                 messages.warning(request, f"{user.name}, you have already checked in for today.")
 
@@ -33,6 +37,7 @@ def check_in(request):
         return redirect('check_in')
 
     return render(request, 'check_in.html')
+
 
 @login_required
 def check_out(request):
@@ -62,11 +67,21 @@ def check_out(request):
 
 
 def daily_attendance(request):
-    today = timezone.now().date()
-    attendance_list = Attendance.objects.filter(date=today)
+    attendance_records = Attendance.objects.all().order_by('date')
+
+    # Group attendance by date
+    grouped_attendance = {}
+    for attendance in attendance_records:
+        if attendance.date not in grouped_attendance:
+            grouped_attendance[attendance.date] = []
+        grouped_attendance[attendance.date].append(attendance)
+
     context = {
-        'attendance_list': attendance_list,
+        'grouped_attendance': grouped_attendance
     }
+
+    return render(request, 'daily_attendance.html', context)
+
     # paginator = Paginator(data, 50)
     # page_number = request.GET.get('page')
     # data = paginator.get_page(page_number)

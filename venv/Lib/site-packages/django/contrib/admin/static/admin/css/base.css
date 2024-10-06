@@ -854,8 +854,8 @@ a.deletelink:focus, a.deletelink:hover {
 }
 
 .skip-to-content-link:focus {
-    left: 0px;
-    top: 0px;
+    left: 0;
+    top: 0;
 }
 
 #content {

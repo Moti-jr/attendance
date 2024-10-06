@@ -1,157 +1,148 @@
+
+{% extends "main.html" %}
 {%load static%}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="Description" content="Enter your description here"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<title>attendance</title>
-</head>
+{% block content %}
+
+
 <style>
-   
-   * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
-}
 
-html, body {
-    height: 100%;
-    margin: 0;
-}
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background-color:white;
-}
+    }
 
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
 
-
-#every {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto; /* Centers the content vertically */
-    width: 400px;
-    
-}
-
-img {
-    margin-top: -170px;
-}
-
-#greetings {
-    display: flex;
-    font-size: 20px;
-    font-family: cursive;
-    margin: 20px 0px 50px 0px;
-}
-
-#options {
-    width: 100%;
-    background-color:aliceblue;
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    padding: 40px;
-    border-radius: 12px;
-       
-}
-
-#options button {
-    width: 120px;
-    height: 50px;
-    border: none;
-    border-radius: 20px;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-    font-size: 20px;
-    font-weight: 600;
-    
-}
-
-button:hover {
-    background-color: green;
-    color: white;
-    
-    
-}
-
-#signout:hover {
-    background-color: red;
-}
-
-#myForm {
-    margin-top: 40px;
-    display: none;
-    justify-content: center;
-    gap: 10px;
-    font-size: 20px;
-    
-}
-
-#personalNum {
-width: 250px;
-text-align: center;
-padding: 10px;
-font-size: 15px;
-
-}
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+    }
 
 
+    #every {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: auto; /* Centers the content vertically */
+        width: 400px;
 
-#ok {
-    padding: 15px;
-}
+    }
+
+    img {
+        margin-top: -170px;
+    }
+
+    #greetings {
+        display: flex;
+        font-size: 20px;
+        font-family: cursive;
+        margin: 20px 0 50px 0;
+    }
+
+    #options {
+        width: 100%;
+        background-color: #f1e8e8;
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding: 40px;
+        border-radius: 12px;
+
+    }
+
+    #options button {
+        width: 120px;
+        height: 50px;
+        border: none;
+        border-radius: 20px;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        font-size: 20px;
+        font-weight: 600;
+
+    }
+
+    button:hover {
+        background-color: green;
+        color: white;
 
 
+    }
 
-footer {
-    width: 100%;
-    text-align: center;
-    background-color: #f1f1f1; /* Optional: Add a background color for the footer */
-}
+    #signout:hover {
+        background-color: red;
+    }
+
+    #myForm {
+        margin-top: 40px;
+        display: none;
+        justify-content: center;
+        gap: 10px;
+        font-size: 20px;
+
+    }
+
+    #personalNum {
+        width: 250px;
+        text-align: center;
+        padding: 10px;
+        font-size: 15px;
+
+    }
+
+
+    #ok {
+        padding: 15px;
+    }
+
+
+    footer {
+        width: 100%;
+        text-align: center;
+        background-color: #f1f1f1; /* Optional: Add a background color for the footer */
+    }
 
 </style>
 <body>
-    <div id="every">
-        
-        <img src="{% static 'main_app/images/hudumalogo.jpeg' %}" alt="not found">
-        <p id="greetings"></p>
 
-        <div id="options">
-            <a href="{%url 'check_in'%}">
-                <button id="signin">Check In</button>
-            </a>
-            <a href="{%url 'check_out'%}">
-                <button id="signout">Check Out</button>
-            </a>
-        </div>
-        
+<div id="every">
+
+    <img src="{% static 'main_app/images/hudumalogo.jpeg' %}" alt="not found">
+    <p id="greetings"></p>
+
+    <div id="options">
+        <a href="{%url 'check_in'%}">
+            <button id="signin">Check In</button>
+        </a>
+        <a href="{%url 'check_out'%}">
+            <button id="signout">Check Out</button>
+        </a>
     </div>
-    <div id="signAsAdmin"><a href="">SignIn as admin</a></div>
-    <footer>
-        <p>Copyright &#169; 2024 - sheldon.</p>
-    </footer>
+
+</div>
+<!--<div id="signAsAdmin"><a href="">SignIn as admin</a></div>-->
+<footer>
+    <p>Copyright &#169; 2024 - Nandi Huduma.</p>
+</footer>
 </body>
 <script>
     var hourNow = new Date().getHours();
 
     const greetings = document.getElementById('greetings');
 
-    if(hourNow >= 0 && hourNow < 12) {
+    if (hourNow >= 0 && hourNow < 12) {
         greetings.innerHTML = "Good Morning..."
-    }else if(hourNow >= 12 && hourNow < 16) {
+    } else if (hourNow >= 12 && hourNow < 16) {
         greetings.innerHTML = "Good Afternoon..."
-    }else {
+    } else {
         greetings.innerHTML = "Good evening..."
     }
 
@@ -159,7 +150,7 @@ footer {
     const signOut = document.getElementById("signout");
     const myForm = document.getElementById("myForm");
     const options = document.getElementById("options");
-    
+
 
     signIn.addEventListener('click', () => {
         myForm.style.display = 'flex'
@@ -179,8 +170,11 @@ footer {
 </script>
 
 
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+     {% endblock %}
+
+

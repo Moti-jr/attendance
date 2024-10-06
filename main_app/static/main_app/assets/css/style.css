@@ -1,7 +1,23 @@
 
 body{
-    background-color:rgba(220, 74, 74, 0.857)6% 4%;
+    background-color:rgba(220, 74, 74, 0.857);
     }
+img{
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    width:150px;
+
+}
+form{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:auto;
+    margin-top:120px;
+}
 img{
     display: flex;
     flex-direction:column;

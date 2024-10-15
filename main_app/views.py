@@ -71,7 +71,7 @@ def check_out(request):
         return redirect('check_in')
 
     return render(request, 'check_out.html')
-
+@ login_required()
 def daily_attendance(request):
     # Fetch all attendance records ordered by date (latest first)
     attendance_records = Attendance.objects.all().order_by('-date')

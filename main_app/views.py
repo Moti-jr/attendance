@@ -68,9 +68,10 @@ def check_out(request):
             messages.error(request, "Invalid ID number.")
 
         # Clear the ID input after submission
-        return redirect('check_in')
+        return redirect('home')
 
     return render(request, 'check_out.html')
+
 @ login_required(login_url='admin:login')
 def daily_attendance(request):
     # Fetch all attendance records ordered by date (latest first)

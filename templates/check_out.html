@@ -11,7 +11,7 @@
                     
                     <form action="" method="POST" class="shadow px-3 py-3" enctype="multipart/form-data">
                         {% include 'alerts.html' %}
-                        <img src="{% static 'main_app/images/hudumalogo.jpeg' %}" alt="not found">
+                        <a href="{%url 'home'%}" ><img src="{% static 'main_app/images/hudumalogo.jpeg' %}" alt="not found"></a>
                         <h3 class="text-center text-capitalize text-success ">Check Out</h3>
                         <input type="text" class="form-control mb-3" id="id_number" name="id_number" required>
                         {# CSRF CHECK IF DATA COME FROM THE FORM#}

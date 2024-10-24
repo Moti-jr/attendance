@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -131,15 +132,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # This production code might break development mode, so we check whether we're in DEBUG mode
 
-    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+# Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
-    # and renames the files with unique names for each version to support long-term caching
+# Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+# and renames the files with unique names for each version to support long-term caching
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,  'static/'), ]
+    os.path.join(BASE_DIR, 'static/'), ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -153,4 +154,19 @@ MESSAGE_TAGS = {
     messages.SUCCESS: "alert-success",
     messages.WARNING: "alert-warning",
     messages.INFO: "alert-info",
+}
+
+# sytling admin using jazmin
+JAZZMIN_SETTINGS = {
+    "copyright": "Huduma Kenya ",
+    "site_logo": 'main_app/images/logo 1.png',
+    "login_logo": 'main_app/images/logo 2.png',
+    "login_logo_dark": 'main_app/images/logo 1.png',
+    "site_logo_classes": "img-square",
+    "welcome_sign": "ADMIN",
+    "related_modal_active": False,
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {"auth.user": "collapsible", "auth.group": "vertical_tabs"},
+    # Add a language dropdown into the admin
+    'topmenu_links:horizontal_tabs': True,
 }

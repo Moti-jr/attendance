@@ -1,15 +1,16 @@
 {% extends 'main.html' %}
-{% load static%}
- {% block content %}
+{% load static %}
+{% block content %}
 <div class="container mt-8">
   <div class="row justify-content-center">
     <div id="bigCont" class="col-sm-7">
       <form
+        id="checkInForm"
         action=""
         method="POST"
         class="shadow px-3 py-3"
         enctype="multipart/form-data">
-         <a href="{%url 'home'%}" ><img src="{% static 'main_app/images/hudumalogo.jpeg' %}"  alt=""></a>
+        <a href="{% url 'home' %}"><img src="{% static 'main_app/images/hudumalogo.jpeg' %}" alt=""></a>
 
         {% include 'alerts.html' %}
         <h3 class="text-center text-capitalize text-success">Check In</h3>
@@ -28,19 +29,26 @@
     </div>
   </div>
 </div>
+
 <script>
+  // Clear the ID input after submission
   document.getElementById("checkInForm").onsubmit = function () {
     setTimeout(function () {
       document.getElementById("id_number").value = "";
     }, 10);
   };
 
-  document.getElementById("checkOutForm").onsubmit = function () {
-    setTimeout(function () {
-      document.getElementById("id_number").value = "";
-    }, 10);
-  };
+  // Check if there is a success message, then delay redirect
+  {% if messages %}
+    {% for message in messages %}
+      {% if "success" in message.tags %}
+        setTimeout(function() {
+          window.location.href = "{% url 'home' %}";
+        }, 3000); // Delay for 5000 ms (5 seconds)
+      {% endif %}
+    {% endfor %}
+  {% endif %}
 </script>
 
 {% endblock %}
- {% block title %} SignIn {% endblock %}
+{% block title %} SignIn {% endblock %}

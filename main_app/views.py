@@ -22,14 +22,6 @@ def check_in(request):
         try:
             user = User.objects.get(id_number=id_number)
             today = timezone.now().date()
-            # attendance,created =Attendance.objects.get_or_create(user=user,date=today)
-            # Define the 8:30 AM cutoff time
-
-            # cutoff_time = now.replace(8, 30,00 )  # 08:30:00
-            #
-            # if now > cutoff_time:
-            #     messages.error(request, "You cannot check in after 8:30 AM.")
-            #     return redirect('check_in')
 
             attendance, created = Attendance.objects.get_or_create(user=user, date=today)
 
@@ -38,13 +30,14 @@ def check_in(request):
                 attendance.check_in_time = timezone.now()
                 attendance.save()
                 messages.success(request, f"{user.name}, Checked in successfully!")
+                return render(request, 'check_in.html', {'redirect_after_delay': True})
             else:
                 messages.error(request, "You have already checked in today.")
+                return render(request, 'check_in.html')
+
         except User.DoesNotExist:
             messages.error(request, "Invalid ID number.")
-
-        # Clear the ID input after submission
-        return redirect('check_in')
+            return render(request, 'check_in.html')
 
     return render(request, 'check_in.html')
 
@@ -62,17 +55,19 @@ def check_out(request):
                 attendance.check_out_time = timezone.now()
                 attendance.save()
                 messages.success(request, f"{user.name},Checked out successfully!")
+                return render(request, 'check_out.html', {'redirect_after_delay': True})
             else:
                 messages.error(request, f"{user.name},You need to check in first or have already checked out.")
         except User.DoesNotExist:
             messages.error(request, "Invalid ID number.")
-
+            return render(request, 'check_out.html')
         # Clear the ID input after submission
-        return redirect('home')
+
 
     return render(request, 'check_out.html')
 
-@ login_required(login_url='admin:login')
+
+@login_required(login_url='admin:login')
 def daily_attendance(request):
     # Fetch all attendance records ordered by date (latest first)
     attendance_records = Attendance.objects.all().order_by('-date')

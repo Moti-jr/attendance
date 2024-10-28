@@ -25,6 +25,7 @@ class Attendance(models.Model):
     date = models.DateField(auto_now_add=True)
     check_in_time = models.DateTimeField(null=True, blank=True)
     check_out_time = models.DateTimeField(null=True, blank=True)
+    checked_out_by = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
         unique_together = ('user', 'date')

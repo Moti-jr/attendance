@@ -1,6 +1,4 @@
-import datetime
 from collections import defaultdict
-
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.utils import timezone
@@ -53,19 +51,16 @@ def check_out(request):
             if attendance and attendance.check_in_time and not attendance.check_out_time:
                 # Save check-out time
                 attendance.check_out_time = timezone.now()
+                attendance.checked_out_by = "user"  # Manual checkout
                 attendance.save()
-                messages.success(request, f"{user.name},Checked out successfully!")
+                messages.success(request, f"{user.name}, checked out successfully!")
                 return render(request, 'check_out.html', {'redirect_after_delay': True})
             else:
-                messages.error(request, f"{user.name},You need to check in first or have already checked out.")
+                messages.error(request, f"{user.name}, you need to check in first or have already checked out.")
         except User.DoesNotExist:
             messages.error(request, "Invalid ID number.")
             return render(request, 'check_out.html')
-        # Clear the ID input after submission
-
-
     return render(request, 'check_out.html')
-
 
 @login_required(login_url='admin:login')
 def daily_attendance(request):

@@ -64,8 +64,8 @@ def check_out(request):
 
 @login_required(login_url='admin:login')
 def daily_attendance(request):
-    # Fetch all attendance records ordered by date (latest first)
-    attendance_records = Attendance.objects.all().order_by('-date')
+    today = timezone.now().date()
+    attendance_records = Attendance.objects.filter(date=today).order_by('-date')
 
     # Group attendance records by date
     grouped_attendance = defaultdict(list)

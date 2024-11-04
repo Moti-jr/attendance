@@ -2,14 +2,13 @@ from collections import defaultdict
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.utils import timezone
+
+
 from .models import User, Attendance
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.template.loader import render_to_string
-
-
 # from weasyprint import HTML
-
 def home(request):
     return render(request, 'index.html')
 

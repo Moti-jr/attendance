@@ -2,206 +2,78 @@
 {%load static%}
 {% block content %}
 <style>
-        @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+    @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 
-        .centered-table-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
+    .centered-table-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
 
-        }
+    }
 
-        .centered-table {
-            width: 100%;
-            max-width: 1000px; /* Adjust max-width as needed */
-            padding: 10px;
-        }
+    .centered-table {
+        width: 100%;
+        max-width: 1000px; /* Adjust max-width as needed */
+        padding: 10px;
+    }
 
-        .centered-table img {
-            display: block;
-            margin: 0 auto 500px; /* Center and add margin below the image */
-            max-width: 50px; /* Adjust the max-width as needed */
-            height: auto;
-        }
+    .centered-table img {
+        display: block;
+        margin: 0 auto 500px; /* Center and add margin below the image */
+        max-width: 50px; /* Adjust the max-width as needed */
+        height: auto;
+    }
 
-        .centered-table h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    .centered-table h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-        img {
-            width: 150px;
+    img {
+        width: 150px;
 
-        }
+    }
 
-        * {
-            font-family: Roboto,serif;
-        }
+    * {
+        font-family: Roboto, serif;
+         padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
 
-        .footer-distributed {
-            background: #444;
-            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-            box-sizing: border-box;
-            width: 100%;
-            /*max-height:80px;*/
-            font: bold 16px sans-serif;
-            text-align: left;
-            padding: 40px 50px 30px;
-            overflow: hidden;
-        }
+    section {
+        width: 100%;
+        display: inline-block;
+        background: #ccc;
+        height: 60vh;
+        text-align: center;
+        font-size: 22px;
+        font-weight: 700;
+        text-decoration: underline;
+    }
 
-        section {
-            width: 100%;
-            display: inline-block;
-            background: #ccc;
-            height: 60vh;
-            text-align: center;
-            font-size: 22px;
-            font-weight: 700;
-            text-decoration: underline;
-        }
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
 
 
-        /* Footer left */
-
-        .footer-distributed .footer-left {
-            float: left;
-        }
-
-        /* The company logo */
-
-        .footer-distributed h3 {
-            color: #ffffff;
-            font: normal 36px 'Roboto', cursive;
-            margin: 0 0 10px;
-        }
-
-        .footer-distributed h3 span {
-            color: #5383d3;
-        }
-
-        /* Footer links */
-
-        .footer-distributed .footer-links {
-            color: #ffffff;
-            margin: 0 0 10px;
-            padding: 0;
-        }
-
-        .footer-distributed .footer-links a {
-            display: inline-block;
-            line-height: 1.8;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .footer-distributed .footer-company-name {
-            color: #8f9296;
-            font-size: 14px;
-            font-weight: normal;
-            margin: 0;
-        }
-
-        /* Footer social icons */
-
-        .footer-distributed .footer-icons {
-            margin-top: 40px;
-        }
-
-        .footer-distributed .footer-icons a {
-            display: inline-block;
-            width: 35px;
-            height: 35px;
-            cursor: pointer;
-            background-color: #33383b;
-            border-radius: 2px;
-
-            font-size: 20px;
-            color: #ffffff;
-            text-align: center;
-            line-height: 35px;
-
-            margin-right: 3px;
-            margin-bottom: 5px;
-        }
-
-        /* Footer Right */
-
-        .footer-distributed .footer-right {
-            float: right;
-        }
-
-        .footer-distributed .footer-right p {
-            display: inline-block;
-            vertical-align: top;
-            margin: 15px 42px 0 0;
-            color: #ffffff;
-        }
-
-        /* The contact form */
-
-        .footer-distributed form {
-            display: inline-block;
-        }
-
-        .footer-distributed form input,
-        .footer-distributed form textarea {
-            display: block;
-            border-radius: 3px;
-            box-sizing: border-box;
-            background-color: #1f2022;
-            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.1);
-            border: none;
-            resize: none;
-
-            font: inherit;
-            font-size: 14px;
-            font-weight: normal;
-            color: #d1d2d2;
-
-            width: 400px;
-            padding: 18px;
-        }
-
-        .footer-distributed ::-webkit-input-placeholder {
-            color: #5c666b;
-        }
-
-        .footer-distributed ::-moz-placeholder {
-            color: #5c666b;
-            opacity: 1;
-        }
-
-        .footer-distributed :-ms-input-placeholder {
-            color: #5c666b;
-        }
 
 
-        .footer-distributed form input {
-            height: 55px;
-            margin-bottom: 15px;
-        }
-
-        .footer-distributed form textarea {
-            height: 100px;
-            margin-bottom: 20px;
-        }
-
-        .footer-distributed form button {
-            border-radius: 3px;
-            background-color: #33383b;
-            color: #ffffff;
-            border: 0;
-            padding: 15px 50px;
-            font-weight: bold;
-            float: right;
-        }
-
-        /* If you don't want the footer to be responsive, remove these media queries */
 
 
-    </style>
+
+
+
+    /* If you don't want the footer to be responsive, remove these media queries */
+    footer {
+        width: 100%;
+        text-align: center;
+        background-color: #cf3333; /* Optional: Add a background color for the footer */
+    }
+
+</style>
 </head>
 
 </head>
@@ -210,39 +82,39 @@
     {% for date, attendances in grouped_attendance.items %}
 
     <table class="table table-bordered border-primary table-hover table-center">
-        <img src="{% static 'main_app/images/hudumalogo.jpeg' %}"  alt="not found" />
+        <img src="{% static 'main_app/images/hudumalogo.jpeg' %}" alt="not found"/>
         <h2>NANDI HUDUMA ATTENDANCE</h2>
         <h3>{{ date|date:"l, M j, Y" }}</h3>
 
         <thead>
-            <tr>
-                <th>#</th>
-                <th>NAME</th>
-                <th>ID NUMBER</th>
-                <th>MDA</th>
-                <th>CHECK IN TIME</th>
-                <th>CHECK OUT TIME</th>
-            </tr>
+        <tr>
+            <th>#</th>
+            <th>NAME</th>
+            <th>ID NUMBER</th>
+            <th>MDA</th>
+            <th>CHECK IN TIME</th>
+            <th>CHECK OUT TIME</th>
+        </tr>
         </thead>
         <tbody>
-            {% for attendance in attendances %}
-            <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ attendance.user.name }}</td>
-                <td>{{ attendance.user.id_number }}</td>
-                <td>{{ attendance.user.mda }}</td>
-                <td>{{ attendance.check_in_time|date:"H:i:s"|default:"Not Checked In" }}</td>
-                <td>{{ attendance.check_out_time|date:"H:i:s"|default:"Not Checked Out" }}</td>
-            </tr>
-            {% endfor %}
+        {% for attendance in attendances %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ attendance.user.name }}</td>
+            <td>{{ attendance.user.id_number }}</td>
+            <td>{{ attendance.user.mda }}</td>
+            <td>{{ attendance.check_in_time|date:"H:i:s"|default:"Not Checked In" }}</td>
+            <td>{{ attendance.check_out_time|date:"H:i:s"|default:"Not Checked Out" }}</td>
+        </tr>
+        {% endfor %}
         </tbody>
 
         {% if date == today %}
         <tfoot>
-            <tr>
-                <td colspan="4"><strong>Total Checked In Today:</strong></td>
-                <td colspan="2"><strong>{{ attendances|length }}</strong></td>
-            </tr>
+        <tr>
+            <td colspan="4"><strong>Total Checked In Today:</strong></td>
+            <td colspan="2"><strong>{{ attendances|length }}</strong></td>
+        </tr>
         </tfoot>
         {% endif %}
     </table>
@@ -251,29 +123,14 @@
     {% endfor %}
 </div>
 <!-- Pagination controls -->
-<div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1&search_date={{ search_date }}">First</a>
-            <a href="?page={{ page_obj.previous_page_number }}&search_date={{ search_date }}">Previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}&search_date={{ search_date }}">Next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}&search_date={{ search_date }}">Last</a>
-        {% endif %}
-    </span>
-</div>
-<div class="row"
-     style="font-size:14px;padding-left: 5px; margin-left: 0; margin-right: 0; height:auto; font-weight:bold; text-align: center;justify-content: center; color: #ffffff; border-width: 1px; border-color: #000000; border-style: solid; width: 100%; background-color: #e80101;">
-    Huduma Kenya Secretariat &copy; 2020 - 2024. All rights reserved.<br>
-    Designed by <label style="color:#BCE954;" onclick="javascript:gotosite();">Huduma Kenya Secretariat.</label><br>
-    <label style="color:#BCE954;" onclick="javascript:getterms();">Terms and Conditions</label>
-</div>
+<footer>
+    <div class="row"
+         style="font-size:14px;padding-left: 5px; margin-left: 0; margin-right: 0; height:auto; font-weight:bold; text-align: center;justify-content: center; color: #ffffff; border-width: 1px; border-color: #000000; border-style: solid; width: 100%; background-color: #e80101;">
+        Huduma Kenya Secretariat &copy; 2020 - 2024. All Rights Reserved.<br>
+        Designed by <label style="color:#BCE954;" onclick="javascript:gotosite();">Huduma Kenya Secretariat.</label><br>
+        <label style="color:#BCE954;" onclick="javascript:getterms();">Terms and Conditions</label>
+    </div>
+</footer>
 <!---->
-    {% endblock %}
- {% block title %} Attendance{% endblock %}
+{% endblock %}
+{% block title %} Attendance{% endblock %}

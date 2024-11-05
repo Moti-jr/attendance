@@ -37,7 +37,7 @@
 
     * {
         font-family: Roboto, serif;
-         padding: 0;
+        padding: 0;
         margin: 0;
         box-sizing: border-box;
     }
@@ -58,13 +58,18 @@
         margin: 0;
     }
 
-
-
-
-
-
-
-
+    form {
+        display: flex;
+        float: left;
+        align-content: flex-start;
+    }
+    h3{
+        text-align: left;
+        text-transform: uppercase;
+    }
+    td{
+        text-transform: uppercase;
+    }
 
     /* If you don't want the footer to be responsive, remove these media queries */
     footer {
@@ -79,49 +84,60 @@
 </head>
 <body>
 <div class="container mt-4 centered-table-container">
-    {% for date, attendances in grouped_attendance.items %}
+
 
     <table class="table table-bordered border-primary table-hover table-center">
         <img src="{% static 'main_app/images/hudumalogo.jpeg' %}" alt="not found"/>
         <h2>NANDI HUDUMA ATTENDANCE</h2>
-        <h3>{{ date|date:"l, M j, Y" }}</h3>
 
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>NAME</th>
-            <th>ID NUMBER</th>
-            <th>MDA</th>
-            <th>CHECK IN TIME</th>
-            <th>CHECK OUT TIME</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for attendance in attendances %}
-        <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>{{ attendance.user.name }}</td>
-            <td>{{ attendance.user.id_number }}</td>
-            <td>{{ attendance.user.mda }}</td>
-            <td>{{ attendance.check_in_time|date:"H:i:s"|default:"Not Checked In" }}</td>
-            <td>{{ attendance.check_out_time|date:"H:i:s"|default:"Not Checked Out" }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
+        <!-- Search Form -->
+        <form method="get" action="">
+            <div class="d-flex">
+                <input type="date" name="search_date" class="form-control me-2 mb-2 " placeholder="Select a date"
+                       required>
+                <button class="btn btn-primary mb-2 " type="submit">Search</button>
+            </div>
+            {% for date, attendances in grouped_attendance.items %}
+            <h3>{{ date|date:"l, M j, Y" }}</h3>
 
-        {% if date == today %}
-        <tfoot>
-        <tr>
-            <td colspan="4"><strong>Total Checked In Today:</strong></td>
-            <td colspan="2"><strong>{{ attendances|length }}</strong></td>
-        </tr>
-        </tfoot>
-        {% endif %}
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>NAME</th>
+                <th>ID NUMBER</th>
+                <th>MDA</th>
+                <th>CHECK IN TIME</th>
+                <th>CHECK OUT TIME</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for attendance in attendances %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ attendance.user.name }}</td>
+                <td>{{ attendance.user.id_number }}</td>
+                <td>{{ attendance.user.mda }}</td>
+                <td>{{ attendance.check_in_time|date:"H:i:s"|default:"Not Checked In" }}</td>
+                <td>{{ attendance.check_out_time|date:"H:i:s"|default:"Not Checked Out" }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+
+            {% if date == today %}
+            <tfoot>
+            <tr>
+                <td colspan="4"><strong>Total Checked In Today:</strong></td>
+                <td colspan="2"><strong>{{ attendances|length }}</strong></td>
+            </tr>
+            </tfoot>
+            {% endif %}
     </table>
     {% empty %}
-    <p>No attendance records available.</p>
+    <p>No attendance records available for the selected date.</p>
     {% endfor %}
 </div>
+
+
 <!-- Pagination controls -->
 <footer>
     <div class="row"

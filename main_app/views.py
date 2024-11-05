@@ -63,39 +63,25 @@ def check_out(request):
 
 @login_required(login_url='admin:login')
 def daily_attendance(request):
-    today = timezone.now().date()
-    attendance_records = Attendance.objects.filter(date=today).order_by('-date')
+    search_date = request.GET.get('search_date')
+    grouped_attendance = {}
 
-    # Group attendance records by date
-    grouped_attendance = defaultdict(list)
-    daily_totals = defaultdict(int)  # Keep track of the total check-ins for each day
-    today = timezone.now().date()
-    total_checked_in_today = 0
+    if search_date:
+        # Parse the date from the search input
+        date_object = timezone.datetime.strptime(search_date, "%Y-%m-%d").date()
+    else:
+        date_object = timezone.now().date()
 
-    for attendance in attendance_records:
-        # Group attendances by date
-        grouped_attendance[attendance.date].append(attendance)
+    # Fetch attendance records for the specified date
+    attendance_records = Attendance.objects.filter(date=date_object)
+    if attendance_records.exists():
+        grouped_attendance[date_object] = attendance_records
 
-        # Count total check-ins for each day
-        if attendance.check_in_time is not None:
-            daily_totals[attendance.date] += 1
-
-        # Count the number of people who checked in today
-        if attendance.date == today and attendance.check_in_time is not None:
-            total_checked_in_today += 1
-
-    # Sort the grouped attendance by date in reverse order (latest date first)
-    grouped_attendance = dict(sorted(grouped_attendance.items(), reverse=True))
-
-    context = {
+    # Pass the grouped_attendance dictionary and today's date
+    return render(request, 'daily_attendance.html', {
         'grouped_attendance': grouped_attendance,
-        'total_checked_in_today': total_checked_in_today,
-        'daily_totals': daily_totals,  # Pass the daily totals to the template
-        'today': today  # Pass the `today` variable to the template
-    }
-
-    return render(request, 'daily_attendance.html', context)
-
+        'today': timezone.now().date(),
+    })
 # paginator = Paginator(data, 50)
 # page_number = request.GET.get('page')
 # data = paginator.get_page(page_number)

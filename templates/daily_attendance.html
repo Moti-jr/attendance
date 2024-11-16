@@ -1,152 +1,169 @@
 {% extends "main.html" %}
-{%load static%}
+{% load static %}
 {% block content %}
-<style>
-    @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huduma Attendance</title>
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .centered-table-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
+        html, body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
 
-    }
+        body {
+            font-family: serif;
+        }
 
-    .centered-table {
-        width: 100%;
-        max-width: 1000px; /* Adjust max-width as needed */
-        padding: 10px;
-    }
+        .container {
+            flex: 1; 
+            width: 100%;
+        }
 
-    .centered-table img {
-        display: block;
-        margin: 0 auto 500px; /* Center and add margin below the image */
-        max-width: 50px; /* Adjust the max-width as needed */
-        height: auto;
-    }
+        .centered-table-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
 
-    .centered-table h2 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
+        .centered-table {
+            width: 100%;
+            max-width: 1000px; 
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
 
-    img {
-        width: 150px;
+        .centered-table img {
+            display: block;
+            margin: 0 auto 20px; 
+            max-width: 100px; 
+            height: auto;
+        }
 
-    }
+        .centered-table h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    * {
-        font-family: Roboto, serif;
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
+        table {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
 
-    section {
-        width: 100%;
-        display: inline-block;
-        background: #ccc;
-        height: 60vh;
-        text-align: center;
-        font-size: 22px;
-        font-weight: 700;
-        text-decoration: underline;
-    }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
 
-    html, body {
-        height: 100%;
-        margin: 0;
-    }
+        th {
+            background-color: #f4f4f4;
+        }
 
-    form {
-        display: flex;
-        float: left;
-        align-content: flex-start;
-    }
-    h3{
-        text-align: left;
-        text-transform: uppercase;
-    }
-    td{
-        text-transform: uppercase;
-    }
+        img {
+            width: 150px;
+        }
 
-    /* If you don't want the footer to be responsive, remove these media queries */
-    footer {
-        width: 100%;
-        text-align: center;
-        background-color: #cf3333; /* Optional: Add a background color for the footer */
-    }
+        footer {
+            width: 100%;
+            background-color: #cf3333; 
+            text-align: center;
+            color: white;
+            padding: 10px 0;
+            font-weight: bold;
+            border-top: 1px solid #000; 
+        }
 
-</style>
-</head>
-
+        
+        @media (max-width: 768px) {
+            footer {
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="container mt-4 centered-table-container">
+    <div class="container">
+        <div class="centered-table-container">
+            <img src="{% static 'main_app/images/hudumalogo.jpeg' %}" alt="Logo">
+            <h2>NANDI HUDUMA ATTENDANCE</h2>
 
+            <!-- Search Form -->
+            <form method="get" action="" style="margin-bottom: 20px;">
+                <input 
+                    type="date" 
+                    name="search_date" 
+                    class="form-control me-2 mb-2" 
+                    placeholder="Select a date" 
+                    required>
+                <button class="btn btn-primary mb-2" type="submit">Search</button>
+            </form>
 
-    <table class="table table-bordered border-primary table-hover table-center">
-        <img src="{% static 'main_app/images/hudumalogo.jpeg' %}" alt="not found"/>
-        <h2>NANDI HUDUMA ATTENDANCE</h2>
-
-        <!-- Search Form -->
-        <form method="get" action="">
-            <div class="d-flex">
-                <input type="date" name="search_date" class="form-control me-2 mb-2 " placeholder="Select a date"
-                       required>
-                <button class="btn btn-primary mb-2 " type="submit">Search</button>
-            </div>
             {% for date, attendances in grouped_attendance.items %}
             <h3>{{ date|date:"l, M j, Y" }}</h3>
 
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>NAME</th>
-                <th>ID NUMBER</th>
-                <th>MDA</th>
-                <th>CHECK IN TIME</th>
-                <th>CHECK OUT TIME</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for attendance in attendances %}
-            <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ attendance.user.name }}</td>
-                <td>{{ attendance.user.id_number }}</td>
-                <td>{{ attendance.user.mda }}</td>
-                <td>{{ attendance.check_in_time|date:"H:i:s"|default:"Not Checked In" }}</td>
-                <td>{{ attendance.check_out_time|date:"H:i:s"|default:"Not Checked Out" }}</td>
-            </tr>
+            <table class="centered-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>NAME</th>
+                        <th>ID NUMBER</th>
+                        <th>MDA</th>
+                        <th>CHECK IN TIME</th>
+                        <th>CHECK OUT TIME</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for attendance in attendances %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ attendance.user.name }}</td>
+                        <td>{{ attendance.user.id_number }}</td>
+                        <td>{{ attendance.user.mda }}</td>
+                        <td>{{ attendance.check_in_time|date:"H:i:s"|default:"Not Checked In" }}</td>
+                        <td>{{ attendance.check_out_time|date:"H:i:s"|default:"Not Checked Out" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                {% if date == today %}
+                <tfoot>
+                    <tr>
+                        <td colspan="4"><strong>Total Checked In Today:</strong></td>
+                        <td colspan="2"><strong>{{ attendances|length }}</strong></td>
+                    </tr>
+                </tfoot>
+                {% endif %}
+            </table>
+            {% empty %}
+            <p>No attendance records available for the selected date.</p>
             {% endfor %}
-            </tbody>
-
-            {% if date == today %}
-            <tfoot>
-            <tr>
-                <td colspan="4"><strong>Total Checked In Today:</strong></td>
-                <td colspan="2"><strong>{{ attendances|length }}</strong></td>
-            </tr>
-            </tfoot>
-            {% endif %}
-    </table>
-    {% empty %}
-    <p>No attendance records available for the selected date.</p>
-    {% endfor %}
-</div>
-
-
-<!-- Pagination controls -->
-<footer>
-    <div class="row"
-         style="font-size:14px;padding-left: 5px; margin-left: 0; margin-right: 0; height:auto; font-weight:bold; text-align: center;justify-content: center; color: #ffffff; border-width: 1px; border-color: #000000; border-style: solid; width: 100%; background-color: #e80101;">
-        Huduma Kenya Secretariat &copy; 2020 - 2024. All Rights Reserved.<br>
-        Designed by <label style="color:#BCE954;" onclick="javascript:gotosite();">Huduma Kenya Secretariat.</label><br>
-        <label style="color:#BCE954;" onclick="javascript:getterms();">Terms and Conditions</label>
+        </div>
     </div>
-</footer>
-<!---->
+
+    <footer>
+        Nandi Huduma ICT &copy; <span id="year"></span>. All Rights Reserved.<br>
+        <span style="color:#BCE954;" onclick="javascript:getterms();">Terms and Conditions</span>
+    </footer>
+    <script>
+        const year = document.getElementById("year");
+        const date = new Date();
+
+        const yearNow = date.getFullYear();
+        year.innerText = yearNow;
+    </script>
+</body>
+</html>
 {% endblock %}
-{% block title %} Attendance{% endblock %}

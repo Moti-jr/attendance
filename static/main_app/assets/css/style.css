@@ -10,14 +10,7 @@ img{
     width:150px;
 
 }
-form{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    height:auto;
-    margin-top:120px;
-}
+
 img{
     display: flex;
     flex-direction:column;
@@ -26,11 +19,4 @@ img{
     width:150px;
 
 }
-form{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    height:auto;
-    margin-top:120px;
-}
+

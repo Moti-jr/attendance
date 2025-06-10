@@ -1,54 +1,59 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block content %}
-<div class="container mt-8">
-  <div class="row justify-content-center">
-    <div id="bigCont" class="col-sm-7">
-      <form
-        id="checkInForm"
-        action=""
-        method="POST"
-        class="shadow px-3 py-3"
-        enctype="multipart/form-data">
-        <a href="{% url 'home' %}"><img src="{% static 'main_app/images/hudumalogo.jpeg' %}" alt=""></a>
+    <div class="d-flex justify-content-center align-items-center vh-100 ">
+        <div id="bigCont" class="col-sm-6">
+            <form
+                    id="checkInForm"
+                    action=""
+                    method="POST"
+                    class="shadow px-4 py-4 text-center"
+                    enctype="multipart/form-data">
 
-        {% include 'alerts.html' %}
-        <h3 class="text-center text-capitalize text-success">Check In</h3>
-        <input
-          type="text"
-          class="form-control mb-3"
-          id="id_number"
-          name="id_number"
-          required
-        />
-        {% csrf_token %}
-        {{ form }}
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'main_app/images/hudumalogo.jpeg' %}" alt="Huduma Logo"
+                         class="mb-3 mx-auto d-block" style="max-width: 150px;">
+                </a>
 
-        <button class="btn btn-success w-15">Check In</button>
-      </form>
+                {% include 'alerts.html' %}
+
+                <h3 class="text-success text-capitalize">Check In</h3>
+
+                <input
+                        type="text"
+                        class="form-control mb-3"
+                        id="id_number"
+                        name="id_number"
+                        required
+                />
+
+                {% csrf_token %}
+                {{ form }}
+
+                <button class="btn btn-success mt-3">Check In</button>
+            </form>
+        </div>
     </div>
-  </div>
-</div>
 
-<script>
-  // Clear the ID input after submission
-  document.getElementById("checkInForm").onsubmit = function () {
-    setTimeout(function () {
-      document.getElementById("id_number").value = "";
-    }, 10);
-  };
+    <script>
+        // Clear the ID input after submission
+        document.getElementById("checkInForm").onsubmit = function () {
+            setTimeout(function () {
+                document.getElementById("id_number").value = "";
+            }, 10);
+        };
 
-  // Check if there is a success message, then delay redirect
-  {% if messages %}
-    {% for message in messages %}
-      {% if "success" in message.tags %}
-        setTimeout(function() {
-          window.location.href = "{% url 'home' %}";
-        }, 3000); // Delay for 5000 ms (5 seconds)
-      {% endif %}
-    {% endfor %}
-  {% endif %}
-</script>
+        // Check if there is a success message, then delay redirect
+        {% if messages %}
+            {% for message in messages %}
+                {% if "success" in message.tags %}
+                    setTimeout(function () {
+                        window.location.href = "{% url 'home' %}";
+                    }, 3000);
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </script>
 
 {% endblock %}
 {% block title %} SignIn {% endblock %}

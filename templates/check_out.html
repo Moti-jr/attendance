@@ -1,41 +1,48 @@
 {% extends "main.html" %}
 {% load crispy_forms_filters %}
-{%load static%}
- {% block content %}
+{% load static %}
+{% block content %}
+{#    <style>#}
+{#        body {#}
+{#            background-color: #f8f9fa; /* Light gray - Bootstrap's default background */#}
+{#            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;#}
+{#        }#}
+{#    </style>#}
 
-    <div class="container mt-5">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div id="bigCont" class="col-sm-6">
+            <form action="" method="POST" class="shadow px-4 py-4 text-center" enctype="multipart/form-data">
 
-            <div class="row justify-content-center ">
-               
-                <div id="bigCont" class='col-sm-7'>
-                    
-                    <form action="" method="POST" class="shadow px-3 py-3" enctype="multipart/form-data">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'main_app/images/hudumalogo.jpeg' %}" alt="not found"
+                         class="mb-3 mx-auto d-block" style="max-width: 150px;">
+                </a>
 
-                        <a href="{%url 'home'%}" ><img src="{% static 'main_app/images/hudumalogo.jpeg' %}" alt="not found"></a>
-                        {% include 'alerts.html' %}
-                        <h3 class="text-center text-capitalize text-success ">Check Out</h3>
-                        <input type="text" class="form-control mb-3" id="id_number" name="id_number" required>
+                {% include 'alerts.html' %}
 
-                        {# CSRF CHECK IF DATA COME FROM THE FORM#}
-        
-                        {% csrf_token %}
-                        {{ form |crispy  }}
-                    
-                        <button class="btn btn-success w-15 ">Check Out</button>
-                    </form>
-                </div>
-            </div>
+                <h3 class="text-success text-capitalize">Check Out</h3>
+
+                <input type="text" class="form-control mb-3" id="id_number" name="id_number" required>
+
+                {% csrf_token %}
+                {{ form | crispy }}
+
+                <button class="btn btn-success mt-3">Check Out</button>
+            </form>
         </div>
-<script>
-{% if messages %}
-    {% for message in messages %}
-      {% if "success" in message.tags %}
-        setTimeout(function() {
-          window.location.href = "{% url 'home' %}";
-        }, 3000); // Delay for 5000 ms (5 seconds)
-      {% endif %}
-    {% endfor %}
-  {% endif %}
-</script>
+    </div>
+
+    <script>
+        {% if messages %}
+            {% for message in messages %}
+                {% if "success" in message.tags %}
+                    setTimeout(function () {
+                        window.location.href = "{% url 'home' %}";
+                    }, 3000); // Delay for 3 seconds
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </script>
+
 {% endblock %}
 {% block title %} Signout{% endblock %}
